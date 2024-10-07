@@ -21,14 +21,25 @@ public class Recipe {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
-    //private Difficulty difficulty;
+
+
+
     // here lob is used to store the large binary objects i.e; images
     @Lob
     private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
-@Enumerated(value = EnumType.STRING)
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+
+    private Set<Category> categories;
+
+
+    @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
     public Difficulty getDifficulty() {
@@ -125,5 +136,13 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
