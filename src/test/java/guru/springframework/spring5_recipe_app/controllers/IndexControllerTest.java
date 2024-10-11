@@ -1,5 +1,4 @@
 package guru.springframework.spring5_recipe_app.controllers;
-import mock
 
 import aj.org.objectweb.asm.ByteVector;
 import guru.springframework.spring5_recipe_app.Repository.RecipeRepository;
@@ -23,6 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 class IndexControllerTest {
@@ -49,9 +51,13 @@ class IndexControllerTest {
     public void testMockMVC() throws Exception{
 //        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
-//        webTestClient.get()
-//                .uri("/")
-//                .andExpect(status())
+
+
+        webTestClient.get()
+                .uri("/")
+                .exchange() // Execute the request
+                .expectStatus().isOk() // Check if the response status is 200 OK
+                .expectBody(String.class).isEqualTo("index"); // Check if the body is "Hello World"
     }
 
     @Test
