@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Slf4j
 @Component
@@ -82,10 +83,15 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         //get optionals
         UnitOfMeasure eachUom = eachUomOptional.get();
         UnitOfMeasure tableSpoonUom = tableSpoonUomOptional.get();
-        UnitOfMeasure teapoonUom = tableSpoonUomOptional.get();
+        UnitOfMeasure teapoonUom = teaSpoonUomOptional.get();
         UnitOfMeasure dashUom = dashUomOptional.get();
         UnitOfMeasure pintUom = pintUomOptional.get();
         UnitOfMeasure cupsUom = cupsUomOptional.get();
+
+        log.info("Testing.........");
+        log.info(String.valueOf(eachUom.getId()));
+        log.info(String.valueOf(eachUom));
+
 
         //get Categories
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");

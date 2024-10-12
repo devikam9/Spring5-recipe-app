@@ -18,7 +18,7 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne
      // Exclude from hashCode and equals
     private UnitOfMeasure uom;
 

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.util.Set;
+
 
 @Data
 @Entity
@@ -14,5 +16,8 @@ public class UnitOfMeasure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uom")
+    private Set<Ingredient> ingredients;
 
 }
